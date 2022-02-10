@@ -10,11 +10,11 @@ using namespace std;
 class Inventory
 {
 public:
-    Inventory();
+    Inventory(){return totalquant = 0;}
     void pull();                                // pulls single item
     void add(string filename);                  // adds 'amount' amount of items into inventory
     int totalquantity(){return totalquant;}     // total quantity of all items, returns total
-    void print();
+    void print();                               // prints out map of inventory
 
 private:
     map<string, map<double, int>> inv;       //2d map to store inventory
