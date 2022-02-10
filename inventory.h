@@ -13,7 +13,6 @@ public:
     Inventory();
     void pull();                                // pulls single item
     void add(string filename);                  // adds 'amount' amount of items into inventory
-    void remove();                              // removes item from inventory
     int totalquantity(){return totalquant;}     // total quantity of all items, returns total
     void print();
 
