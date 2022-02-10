@@ -27,8 +27,6 @@ void Inventory::add(string filename)
         while( getline(file, line))
         {
             linecount++;
-            cout<<linecount<<" ";
-            cout<<line<<endl;
             if( linecount % 2 == 0)
             {
                 //will pull name from every third line into variable itemname
