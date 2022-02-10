@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/ui">
+        <file>global.qss</file>
+    </qresource>
+</RCC>
