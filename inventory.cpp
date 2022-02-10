@@ -23,22 +23,7 @@ void Inventory::add(string filename)
 
     if(file)
     {
-/*  LOGIC FOR LATER IMPLEMENTATION:
- *
- *  int count;
- *  string line;
- *  while(getline(file,line))
- *  {
- *
- *
- *  STRING NAMETEMP = GETLINE(EVERY THIRD LINE, '\n')
- *  STRING PRICETEMP = GETLINE(EVERY 4TH LINE, '\t') -> convert to double
- *  STRING QUANTITYTEMP = GETLINE (EVERY 4THLINE, '\n') -> convert to int
- *
- *  inv.insert(nametemp,map<double,int>);
- *  inv[nametemp].insert(make_pair(pricetemp,quantitytemp));
- *
- */
+
         while( getline(file, line))
         {
             linecount++;
