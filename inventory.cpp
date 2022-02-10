@@ -5,7 +5,7 @@ Inventory::Inventory()
     totalquant = 0;
 }
 
-void Inventory::add(string filename)
+map<string,map<double,int>> Inventory::add(string filename)
 {
     fstream file;
     file.open(filename);
@@ -23,10 +23,11 @@ void Inventory::add(string filename)
 
     if(file)
     {
-
         while( getline(file, line))
         {
             linecount++;
+//            cout<<linecount<<" ";
+//            cout<<line<<endl;
             if( linecount % 2 == 0)
             {
                 //will pull name from every third line into variable itemname
@@ -52,8 +53,10 @@ void Inventory::add(string filename)
     }
 
     file.close();
+
+    return inv;
 }
-void Inventory::print()
+void Inventory::print(map<string, map<double, int>> inv)
 {
     map<string, map<double, int>>::iterator row;
     map<double, int>::iterator col;
