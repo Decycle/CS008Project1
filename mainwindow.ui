@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1080</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,12 +19,9 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
-      <height>591</height>
+      <width>1080</width>
+      <height>720</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
     </property>
     <widget class="QWidget" name="Login">
      <widget class="QPushButton" name="CloseButton">
@@ -43,8 +40,8 @@
      <widget class="QTextEdit" name="UsernameInput">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>260</y>
+        <x>440</x>
+        <y>210</y>
         <width>161</width>
         <height>31</height>
        </rect>
@@ -53,8 +50,8 @@
      <widget class="QTextEdit" name="PasswordInput">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>310</y>
+        <x>440</x>
+        <y>280</y>
         <width>161</width>
         <height>31</height>
        </rect>
@@ -63,8 +60,8 @@
      <widget class="QLabel" name="UsernameLabel">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>260</y>
+        <x>360</x>
+        <y>220</y>
         <width>81</width>
         <height>20</height>
        </rect>
@@ -76,8 +73,8 @@
      <widget class="QLabel" name="PasswordLabel">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>320</y>
+        <x>360</x>
+        <y>290</y>
         <width>81</width>
         <height>20</height>
        </rect>
@@ -86,38 +83,65 @@
        <string>Password:</string>
       </property>
      </widget>
-     <widget class="QWidget" name="horizontalLayoutWidget">
+     <widget class="QPushButton" name="TestInvalidButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>520</y>
-        <width>791</width>
-        <height>80</height>
+        <x>140</x>
+        <y>490</y>
+        <width>141</width>
+        <height>81</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="LoginButton">
-         <property name="text">
-          <string>Login</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="TestEmployeeButton">
-         <property name="text">
-          <string>Test Employee Menu</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="TestAdminButton">
-         <property name="text">
-          <string>Test Admin Menu</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="text">
+       <string>Test
+Login
+Invalid
+</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="TestAdminButton">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>470</y>
+        <width>141</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Test
+Admin
+Menu
+</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="TestEmployeeButton">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>440</y>
+        <width>141</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Test
+Employee
+Menu</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="SubmitButton">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>330</y>
+        <width>83</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Submit</string>
+      </property>
      </widget>
     </widget>
    </widget>

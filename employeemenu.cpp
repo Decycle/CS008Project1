@@ -12,3 +12,17 @@ EmployeeMenu::~EmployeeMenu()
 {
     delete ui;
 }
+
+
+
+void EmployeeMenu::on_LogOutButton_clicked()
+{
+    emit logOutClicked();
+}
+
+
+void EmployeeMenu::on_ViewReportButton_clicked()
+{
+    emit ViewReportClicked();
+}
+

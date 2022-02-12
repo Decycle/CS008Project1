@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>822</width>
-    <height>474</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,37 +16,24 @@
   <widget class="QLabel" name="statuslabel">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>190</y>
-     <width>341</width>
-     <height>121</height>
+     <x>70</x>
+     <y>40</y>
+     <width>161</width>
+     <height>41</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>40</pointsize>
-    </font>
-   </property>
    <property name="text">
-    <string>Wrong Password</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <string>login invalid</string>
    </property>
   </widget>
   <widget class="QPushButton" name="okButton">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>320</y>
-     <width>141</width>
-     <height>51</height>
+     <x>170</x>
+     <y>190</y>
+     <width>83</width>
+     <height>29</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>18</pointsize>
-    </font>
    </property>
    <property name="text">
     <string>ok</string>
