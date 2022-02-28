@@ -4,11 +4,13 @@
 #include <string>
 #include <iostream>
 
+
 using namespace std;
+
 
 Date::Date()
 {
-    // PROC - initialize private variables, no parameter object
+    //PROC - initialize private variables, no parameter object
     month = 1;
     day = 1;
     year = 2000;
@@ -16,63 +18,83 @@ Date::Date()
     monthName = name(month);
 }
 
+Date::Date(string date){
+    //03/05/2013
+    int  in_day=0, in_year, temp_mon;
+    string in_mon=" ";
+    in_mon = date.substr(0,2);
+
+    if(in_mon[0] ==0){
+        temp_mon = (int)in_mon[1];
+        month = (unsigned int)temp_mon;
+    }
+    else{
+        month = stoi(in_mon);
+    }
+
+    day = stoi(date.substr(3,4));
+    year = stoi(date.substr(6,9));
+
+    monthName = name(month);
+}
+
 Date::Date(unsigned m, unsigned d, unsigned y)
 {
-    int invalid; // PROC - invalid status for invalid output
-    month = m;   // IN/OUT - string month name for date output
-    day = d;     // IN/OUT - day for date output
-    year = y;    // IN/OUT - year for date output
+    int invalid;    //PROC - invalid status for invalid output
+    month = m;      //IN/OUT - string month name for date output
+    day = d;        //IN/OUT - day for date output
+    year = y;       //IN/OUT - year for date output
 
-    // PROC - initialize to valid
+    //PROC - initialize to valid
     invalid = 0;
 
-    // PROC - if number of months is more than existing 12
+    //PROC - if number of months is more than existing 12
     if (month > 12)
     {
         month = 12;
         invalid = 1;
     }
-    // PROC - if month is less than 1
+    //PROC - if month is less than 1
     if (month < 1)
     {
         month = 1;
         invalid = 1;
     }
 
-    // PROC - name of month
+    //PROC - name of month
     monthName = name(month);
 
-    // PROC - if day greater than max day of month, leap year respective
-    if (day > daysPerMonth(month, year))
+    //PROC - if day greater than max day of month, leap year respective
+    if (day > daysPerMonth(month,year))
     {
-        day = daysPerMonth(month, year);
+        day = daysPerMonth(month,year);
         invalid = 1;
     }
-    // PROC - if day is less than 1
+    //PROC - if day is less than 1
     if (day < 1)
     {
         day = 1;
         invalid = 1;
     }
-    // PROC - if the date itself was invalid, before correction
+    //PROC - if the date itself was invalid, before correction
     if (invalid == 1)
         cout << "Invalid date values: Date corrected to " << month << "/"
-             << day << "/" << year << ".\n";
+         << day << "/" << year << ".\n";
 }
 
 Date::Date(const string &mn, unsigned d, unsigned y)
 {
-    int invalid;    // PROC - invalid status for invalid output
-    monthName = mn; // IN/OUT - string month name for date output
-    day = d;        // IN/OUT - day for date output
-    year = y;       // IN/OUT - year for date output
+    int invalid;    //PROC - invalid status for invalid output
+    monthName = mn; //IN/OUT - string month name for date output
+    day = d;        //IN/OUT - day for date output
+    year = y;       //IN/OUT - year for date output
 
-    // PROC - initialize to valid
+    //PROC - initialize to valid
     invalid = 0;
-    // PROC - returns month number, 0 if string couldn't be read
+    //PROC - returns month number, 0 if string couldn't be read
     month = number(monthName);
-    // PROC - if month string could not be read
-    if (month == 0) // month check
+    //PROC - if month string could not be read
+    if (month == 0) //month check
     {
         month = 1;
         day = 1;
@@ -80,63 +102,65 @@ Date::Date(const string &mn, unsigned d, unsigned y)
         monthName = name(month);
         invalid = 2;
     }
-    // PROC - if number of months is more than existing 12
+    //PROC - if number of months is more than existing 12
     if (month > 12)
     {
         month = 12;
         invalid = 1;
     }
-    // PROC - if month is less than 1
+    //PROC - if month is less than 1
     if (month < 1)
     {
         month = 1;
         invalid = 1;
     }
 
-    // PROC - if day greater than max day of month, leap year respective
-    if (day > daysPerMonth(month, year)) // day check
+    //PROC - if day greater than max day of month, leap year respective
+    if (day > daysPerMonth(month,year)) //day check
     {
-        day = daysPerMonth(month, year);
+        day = daysPerMonth(month,year);
         invalid = 1;
     }
-    // PROC - if day is less than 1
+    //PROC - if day is less than 1
     if (day < 1)
     {
         day = 1;
         invalid = 1;
     }
-    // PROC - if the date itself was invalid, before correction
+    //PROC - if the date itself was invalid, before correction
     if (invalid == 2)
         cout << "Invalid month name: the Date was set to " << month << "/"
              << day << "/" << year << ".\n";
-    // PROC - if the month string was invalid, before correction
+    //PROC - if the month string was invalid, before correction
     if (invalid == 1)
         cout << "Invalid date values: Date corrected to " << month << "/"
-             << day << "/" << year << ".\n";
+         << day << "/" << year << ".\n";
 }
+
 
 void Date::printAlpha() const
 {
-    // PROC - print alphabetical form
+    //PROC - print alphabetical form
     cout << monthName << " " << day << ", " << year;
 }
 
+
 void Date::printNumeric() const
 {
-    // PROC - print numeric form
+    //PROC - print numeric form
     cout << month << "/" << day << "/" << year;
 }
 
 bool Date::isLeap(unsigned y) const
-// PROC - will determine if leap year
+//PROC - will determine if leap year
 {
-    // PROC - implies leap year
+    //PROC - implies leap year
     if (y % 4 == 0)
     {
-        // PROC - implies NOT leap year
+        //PROC - implies NOT leap year
         if (y % 100 == 0)
         {
-            // PROC - implies leap year
+            //PROC - implies leap year
             if (y % 400 == 0)
             {
                 return true;
@@ -148,17 +172,18 @@ bool Date::isLeap(unsigned y) const
     return false;
 }
 
+
 unsigned Date::daysPerMonth(unsigned m, unsigned y) const
 {
-    // PROC - return days of month based leap year, year, and month
+    //PROC - return days of month based leap year, year, and month
     if (m == 1)
         return 31;
-    // PROC - accounts for year yer in month of january
+    //PROC - accounts for year yer in month of january
     if (m == 2 && isLeap(y))
     {
         return 29;
     }
-    else if (m == 2)
+        else if (m == 2)
     {
         return 28;
     }
@@ -183,13 +208,14 @@ unsigned Date::daysPerMonth(unsigned m, unsigned y) const
         return 30;
     if (m == 12)
         return 31;
-    // PROC - error
+    //PROC - error
     return 0;
 }
 
-string Date::name(unsigned m) const
+
+string Date::name (unsigned m) const
 {
-    // PROC - return month string based on number
+    //PROC - return month string based on number
     if (m == 1)
         return "January";
     if (m == 2)
@@ -214,13 +240,13 @@ string Date::name(unsigned m) const
         return "November";
     if (m == 12)
         return "December";
-    // PROC - invalid month number
+    //PROC - invalid month number
     return "error";
 }
 
-unsigned Date::number(const string &mn) const
+unsigned Date::number (const string &mn) const
 {
-    // PROC - return month number based on string
+    //PROC - return month number based on string
     if (mn == "January")
         return 1;
     if (mn == "February")
@@ -245,64 +271,65 @@ unsigned Date::number(const string &mn) const
         return 11;
     if (mn == "December")
         return 12;
-    // PROC - // invalid month string
+    //PROC - // invalid month string
     return 0;
 }
 
-string &operator>>(string &input,
-                   Date &cDate)
+string& operator>> (string& input,
+                            Date& cDate)
 {
 
-    //  string date = "";
-    //  isDate >> date;
+//  string date = "";
+//  isDate >> date;
 
-    int dayTemp;          // Day
-    int monthTemp;        // Month
-    int yearTemp;         // Year
-    string monthNameTemp; // Month name
-    bool slashFound = false;
-    bool spaceFound = false;
+  int dayTemp;                           // Day
+  int monthTemp;                         // Month
+  int yearTemp;                          // Year
+  string monthNameTemp;                           // Month name
+  bool slashFound = false;
+  bool spaceFound = false;
 
-    for (unsigned long i = 0; i < input.size(); i++)
-    {
-        if (input.at(i) == '/')
-        {
-            slashFound = true;
-        }
-        else if (input.at(i) == ' ')
-        {
-            spaceFound = true;
-        }
-    }
+  for (unsigned long i = 0; i < input.size(); i++)
+  {
+      if (input.at(i) == '/')
+      {
+          slashFound = true;
+      }
+      else if (input.at(i) == ' ')
+      {
+          spaceFound = true;
+      }
+  }
 
-    if (slashFound == true)
-    {
-        monthTemp = stoi(input.substr(0, input.find("/")));
-        dayTemp = stoi(input.substr(input.find("/") + 1, input.find_last_of('/')));
-        yearTemp = stoi(input.substr(input.find_last_of("/") + 1, input.size()));
-        Date tempDate(monthTemp, dayTemp, yearTemp);
-    }
-    else if (spaceFound == true)
-    {
-        monthTemp = stoi(input.substr(0, input.find(' ')));
-        dayTemp = stoi(input.substr(input.find(' ') + 1, input.find_last_of(' ')));
-        yearTemp = stoi(input.substr(input.find_last_of(' ') + 1, input.size()));
-        Date tempDate(monthNameTemp, dayTemp, yearTemp);
-    }
-    //  else
-    //  {
-    //      Date tempDate;
-    //      //listDate.push_back(tempDate);
-    //  }
-    cDate.month = monthTemp;
-    cDate.day = dayTemp;
-    cDate.year = yearTemp;
-    cDate.monthName = cDate.name(cDate.month);
+  if (slashFound == true)
+  {
+      monthTemp = stoi(input.substr(0, input.find("/")));
+      dayTemp = stoi(input.substr(input.find("/") + 1, input.find_last_of('/')));
+      yearTemp = stoi(input.substr(input.find_last_of("/") + 1, input.size()));
+      Date tempDate (monthTemp, dayTemp, yearTemp);
+  }
+  else if (spaceFound == true)
+  {
+      monthTemp = stoi(input.substr(0, input.find(' ')));
+      dayTemp = stoi(input.substr(input.find(' ') + 1, input.find_last_of(' ')));
+      yearTemp = stoi(input.substr(input.find_last_of(' ') + 1, input.size()));
+      Date tempDate (monthNameTemp, dayTemp, yearTemp);
+  }
+//  else
+//  {
+//      Date tempDate;
+//      //listDate.push_back(tempDate);
+//  }
+  cDate.month = monthTemp;
+  cDate.day = dayTemp;
+  cDate.year = yearTemp;
+  cDate.monthName=cDate.name(cDate.month);
 
-    return input;
+  return input;
+
 }
-ostream &operator<<(ostream &osDate,
-                    const Date &cDate)
+ostream& operator<< (ostream& osDate,
+                            const Date& cDate)
 {
     osDate << cDate.month;
     osDate << "/";
@@ -311,69 +338,63 @@ ostream &operator<<(ostream &osDate,
     osDate << cDate.year;
     return osDate;
 }
-bool Date::operator<(const Date &rhs) const
+bool Date::operator<(const Date& rhs) const
 {
 
-    if (year < rhs.year)
+    if (year<rhs.year)
     {
         return true;
-    }
-    else if (year > rhs.year)
+    }else if (year>rhs.year)
     {
         return false;
     }
-    // if same year
-    if (month < rhs.month)
+    //if same year
+    if (month<rhs.month)
     {
         return true;
-    }
-    else if (month > rhs.month)
+    }else if (month>rhs.month)
     {
         return false;
     }
-    // if same month and year
-    if (day < rhs.day)
+    //if same month and year
+    if (day<rhs.day)
     {
         return true;
-    }
-    else if (day > rhs.day)
+    }else if (day>rhs.day)
     {
         return false;
     }
     return false;
 }
-bool Date::operator>(const Date &rhs) const
+bool Date::operator>(const Date& rhs) const
 {
 
-    if (year > rhs.year)
+    if (year>rhs.year)
     {
         return true;
-    }
-    else if (year < rhs.year)
+    }else if (year<rhs.year)
     {
         return false;
     }
-    // if same year
-    if (month > rhs.month)
+    //if same year
+    if (month>rhs.month)
     {
         return true;
-    }
-    else if (month < rhs.month)
+    }else if (month<rhs.month)
     {
         return false;
     }
-    // if same month and year
-    if (day > rhs.day)
+    //if same month and year
+    if (day>rhs.day)
     {
         return true;
-    }
-    else if (day < rhs.day)
+    }else if (day<rhs.day)
     {
         return false;
     }
     return false;
 }
-bool Date::operator==(const Date &rhs) const
+bool Date::operator==(const Date& rhs) const
 {
     if (year == rhs.year && month == rhs.month && day == rhs.day)
         return true;

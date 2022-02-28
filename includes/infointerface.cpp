@@ -7,7 +7,7 @@ InfoInterface::InfoInterface()
     // files.getMemberFile();
 
     /// read in each day file
-    readPurchase();
+    // readPurchase();
 }
 
 InfoInterface::~InfoInterface()
@@ -71,7 +71,7 @@ void InfoInterface::readMember()
         memberList.push_back(each);
         // cout <<__LINE__<< endl;
         memberCount++;
-        cout << memberCount << endl;
+        // cout << memberCount << endl;
     } while (!infile.eof());
 
     infile.close(); // close the file object.
@@ -121,6 +121,73 @@ bool InfoInterface::findMember(Member member)
     return false;
 }
 
+int InfoInterface::findMemberIndex(string memberID)
+{
+
+    for (int i = 0; i < memberList.length(); i++)
+    {
+        if (memberList[i].getMemberId() == memberID)
+            return i;
+    }
+    return -1;
+}
+
+bool InfoInterface::shouldSwitchPreferred(std::string memberID)
+{
+}
+
+// 11.2 actually do 11.1
+void InfoInterface::SwitchPreferred(std::string memberID)
+{
+    memberList[findMemberIndex(memberID)].upgradeMember();
+}
+bool InfoInterface::SwitchBasic(std::string memberID)
+{
+    memberList[findMemberIndex(memberID)].downgradeMember();
+}
+
 void InfoInterface::readPurchase()
 {
+    fstream in; // PROC-file to be processed
+    string line = "";
+    double price;
+    int quantity;
+    in.open("day1.txt", ios::in);
+
+    // cout<<__LINE__ << endl;
+
+    if (in.fail())
+    {
+        cout << "Open file failed.\n";
+        exit(1);
+    }
+
+    do
+    {
+        Purchase each = Purchase();
+        Date eachExpire = Date();
+
+        getline(in, line);
+        each.setPurchaseDate(line);
+
+        getline(in, line);
+        each.setMemberID(line);
+
+        getline(in, line);
+        each.setProductName(line);
+
+        in >> price;
+        each.setProductPrice(price);
+
+        in >> quantity;
+        each.setProductQuantity(quantity);
+
+        each.print();
+
+        purchaseList.push_back(each);
+        // cout <<__LINE__<< endl;
+
+    } while (!in.eof());
+
+    in.close(); // close the file object.
 }

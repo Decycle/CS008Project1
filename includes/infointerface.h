@@ -2,11 +2,11 @@
 #define INFOINTERFACE_H
 #include <iostream>
 #include "linkedlist.h"
+#include "member.h"
 #include "purchase.h"
 #include "filemanager.h"
 #include <fstream>
 #include <string>
-#include "member.h"
 
 const std::string FILETYPE = ".txt";                 // CONSTANT-file type
 const std::string FILEDIR = "..\\WarehouseReport\\"; // CONSTANT-auto directory path
@@ -59,6 +59,7 @@ public:
     void addMember(Member add);
     void deleteMember(Member del);
     bool findMember(Member member);
+    int findMemberIndex(string memberID);
 
     void print()
     {

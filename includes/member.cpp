@@ -23,7 +23,19 @@ void Member::set_info(string name, string id, string type, std::string date){
     setMemberExpiredDate(std::move(date));
 }
 
+void Member::upgradeMember(){
+    if(this->member_type=="Basic")
+        this->member_type = "Preferred";
+    else
+        this->member_type = "Basic";
+}
 
+void Member::downgradeMember(){
+    if(this->member_type=="Preferred")
+        this->member_type = "Basic";
+    else
+        this->member_type = "Basic";
+}
 
 void Member::print(){
     cout <<"Shopper: [" << this->getMemberName() << "], ["<< this->getMemberId()<<"], ["
