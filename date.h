@@ -92,6 +92,10 @@ class Date
         ***************************************************************/
         Date();
 
+        Date(const Date &source);
+
+        Date& operator=(const Date &source);
+
         /****************************************************************
         * Date(unsigned m, unsigned d, unsigned y);
         * Constructor; Initialize Date attributes for object

@@ -1,11 +1,16 @@
 #ifndef INFOINTERFACE_H
 #define INFOINTERFACE_H
 #include <iostream>
-#include "list.h"
+#include "linkedlist.h"
 #include "member.h"
 #include "purchase.h"
 #include "filemanager.h"
+#include <fstream>
+#include <string>
 
+std::string FILETYPE = ".txt";                  //CONSTANT-file type
+std::string FILEDIR = "..\\WarehouseReport\\";    //CONSTANT-auto directory path
+const int MAXCHAR = 50;
 /****************************************************************
 * InfoInterface Class
 *   This class will represent the current and updated information of the
@@ -50,8 +55,8 @@ public:
      * */
     std::string membershipMonthExpire(std::string month);
     //10 adding and deleting members
-    void addMember(member add);
-    void deleteMember(member del);
+    void addMember(Member add);
+    void deleteMember(Member del);
 
     //11.1
     /*Determine if any basic customer should convert their membership to
@@ -73,7 +78,11 @@ public:
     // the respective .txt files
     void updateInfo();
 private:
-    LinkedList<member> memberList;
+    //helpers
+    void readMember();
+    void readPurchase();
+    //reads in member file first
+    LinkedList<Member> memberList;
     LinkedList<Purchase> purchaseList;
     //textfile manager for both purchases and members
 

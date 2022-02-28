@@ -4,23 +4,28 @@
 
 #include <fstream>
 #include <iostream>
-#include "list.h"
+#include "linkedlist.h"
+#include "date.h"
+#include "dayfile.h"
+#include <sstream>
 /****************************************************************
 * FileManager Class
-*   This class will manage the text files for the purpose of read
-*   and writing. It can edit the purchases per member and
+*   This class will help keep track of the text files for the purpose of read
+*   and writing.
 ***************************************************************/
 class FileManager
 {
 private:
-    //names of purchase files
-    LinkedList<std::string> purchaseFiles;
-    //names of member files
     std::string memberfile;
-
 
 public:
   FileManager();
+
+  LinkedList<Dayfile> purchaseDayFiles;
+
+  std::string getdayfile(Date day);
+  std::string getMemberFile();
+  int numberDayFiles();
 };
 
 #endif // FILEMANAGER_H

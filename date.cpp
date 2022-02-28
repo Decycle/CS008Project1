@@ -32,6 +32,26 @@ Date::Date()
 
     monthName = name(month);
 }
+
+Date::Date(const Date &source)
+{
+    month = source.month;
+    day = source.day;
+    year = source.year;
+
+    monthName = source.monthName;
+
+
+}
+
+Date& Date::operator=(const Date &source)
+{
+    this->day = source.day;
+    this->month = source.month;
+    this->year = source.year;
+    this->monthName = source.monthName;
+    return *this;
+}
 /**********************************************************
 *
 * Method Date: Class Date
@@ -442,6 +462,7 @@ string& operator>> (string& input,
   cDate.month = monthTemp;
   cDate.day = dayTemp;
   cDate.year = yearTemp;
+  cDate.monthName=cDate.name(cDate.month);
 
   return input;
 

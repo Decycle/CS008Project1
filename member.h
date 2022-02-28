@@ -2,46 +2,38 @@
 #define MEMBER_H
 #include <iostream>
 #include <string>
-#include <vector>
-#include <fstream>
 
-using namespace std;
-class member {
+#include "linkedlist.h"
+#include "date.h"
+
+class Member {
 
 
 public:
-    member();
-    member(string name, string id);
+    Member();
+    Member(string name, string id, string type, Date date);
 
-    //vector<member> member_list;
-
-    void setMemberList(member ech_member);
-    const vector<member> &getMemberList() const;
-    const string &getMemberName() const;
-    void setMemberName(const string &memberName);
-    const string &getMemberId() const;
-    void setMemberId(const string &memberId);
-    const string &getMemberExpiredDate() const;
-    void setMemberExpiredDate(const string &memberExpiredDate);
-    const string &getMemberIssueDate() const;
-    void setMemberIssueDate(const string &memberIssueDate);
-    int getYearlyRebate() const;
-    void setYearlyRebate(int yearlyRebate);
-    void setMemberType(int memberPayment);
-    const string &getMemberType() const;
-    void setMemberType(const string &memberType);
+    void print();
+    void set_info(string name, string id, string type, std::string date);
 
 
-    const int BASIC_MEMBER_ANNUAL = 60;
-    const int PREFE_MEMBER_ANNUAL = 75;
+    string getMemberName();                            //getter of Member name
+    void setMemberName(const string memberName);                   //set Member name
+
+    string getMemberId();                              //getter of Member id
+    void setMemberId(const string memberId);                       //set Member id
+
+    Date getMemberExpiredDate();                     //getter of Member expired date
+    void setMemberExpiredDate(std::string memberExpiredDate);     //set Member expired date
+
+    string getMemberType();
+    void setMemberType(const string memberType);
+
 private:
     string member_name;
     string member_id;
     string member_type;         //basic / preferred
-    string member_expired_date;
-    string member_issue_date;
-    double yearly_rebate;      //5% FOR PREFERR MEMBER
-
+    Date member_expired_date;
 };
 
 #endif // MEMBER_H
