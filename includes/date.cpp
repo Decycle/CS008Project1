@@ -400,4 +400,9 @@ bool Date::operator==(const Date& rhs) const
         return true;
     return false;
 }
+
+string Date::print(){
+    return to_string(month) +"-"+ to_string(day) +"-"+ to_string(year);
+}
+
 #endif // COMPLEX_CPP

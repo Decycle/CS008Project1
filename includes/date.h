@@ -27,6 +27,8 @@ class Date
         unsigned daysPerMonth(unsigned m, unsigned y) const;
         string name (unsigned m) const;
         unsigned number (const string &mn) const;
+
+
     public:
 
         Date();
@@ -35,6 +37,8 @@ class Date
         Date(const string &mn, unsigned d, unsigned y);
         void printNumeric() const;
         void printAlpha() const;
+        string print();
+
         friend string& operator>> (string& string, Date& cDate);
         friend ostream& operator<< (ostream& osDate,
                                     const Date& cDate);

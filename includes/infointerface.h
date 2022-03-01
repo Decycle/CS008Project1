@@ -8,41 +8,41 @@
 #include <fstream>
 #include <string>
 
-const std::string FILETYPE = ".txt";                 // CONSTANT-file type
-const std::string FILEDIR = "..\\WarehouseReport\\"; // CONSTANT-auto directory path
+const std::string FILETYPE = ".txt";                  //CONSTANT-file type
+const std::string FILEDIR = "..\\WarehouseReport\\";    //CONSTANT-auto directory path
 const int MAXCHAR = 50;
 /****************************************************************
- * InfoInterface Class
- *   This class will represent the current and updated information of the
- *   warehouse. It
- *   keeps track of all of the members as well as every purchase
- *   made. It reads in all .txt files for both objects to be read
- *   in and for easy access to write to each of these files.
- ***************************************************************/
+* InfoInterface Class
+*   This class will represent the current and updated information of the
+*   warehouse. It
+*   keeps track of all of the members as well as every purchase
+*   made. It reads in all .txt files for both objects to be read
+*   in and for easy access to write to each of these files.
+***************************************************************/
 
 class InfoInterface
 {
 public:
     InfoInterface();
     ~InfoInterface();
-    // 1, A sales report for any given day.
+    //1, A sales report for any given day.
     std::string getDayReport(Date day);
-    // 2, A yearly sales report.
+    //2, A yearly sales report.
     std::string getYearReport(unsigned year);
-    // 3 A user should be able to enter a membership number or name and get
-    // a list of the total purchases per that member.
-    std::string getMemberNumberReport(std::string memberID);
+    //3 A user should be able to enter a membership number or name and get
+    //a list of the total purchases per that member.
+    void getMemberNumberReport(std::string memberID);
     std::string getMemberNameReport(std::string memberName);
-    // 4,sorted by member ID
-    // include a grand total of the purchases.
+    //4,sorted by member ID
+    //include a grand total of the purchases.
     std::string getTotalMemberReport();
-    // 5,enter an item name and get the quantity
-    // of that item sold as well as the total sales price.
+    //5,enter an item name and get the quantity
+    //of that item sold as well as the total sales price.
     std::string getItemReport(std::string itemName);
-    // 6 quantity of each item sold sorted by item name
+    //6 quantity of each item sold sorted by item name
     std::string getItemTotalReport(std::string itemName);
-    // 7 prints out the rebate of all the preferred members sorted by
-    // membership number
+    //7 prints out the rebate of all the preferred members sorted by
+    //membership number
     std::string getRebateReport();
     /*8
      * A report showing the amount per year paid by each member for the
@@ -55,52 +55,52 @@ public:
      *  whose memberships expire that month as well as their dues amount.
      * */
     std::string membershipMonthExpire(std::string month);
-    // 10 adding and deleting members
+    //10 adding and deleting members
     void addMember(Member add);
     void deleteMember(Member del);
     bool findMember(Member member);
     int findMemberIndex(string memberID);
+    int findMemberIndex2(string member_name);
 
-    void print()
-    {
-        for (int i = 0; i < memberList.length(); i++)
-        {
-            cout << "[" << i + 1 << "]: ";
+    void print(){
+        for(int i=0; i<memberList.length();i++){
+            cout << "["<< i+1<<"]: ";
             memberList[i].print();
         }
     }
 
-    // 11.1
+    //11.1
     /*Determine if any basic customer should convert their membership to
      * preferred status.*/
     bool shouldSwitchPreferred(std::string memberID);
 
-    // 11.2 actually do 11.1
+    //11.2 actually do 11.1
     void SwitchPreferred(std::string memberID);
-    // 12.1
+    //12.1
     /*
      * Determine if any preferred customer should convert their membership to basic status.
      */
     bool shouldSwitchBasic(std::string memberID);
 
-    // 12.2actually do 12.2
+    //12.2actually do 12.2
     bool SwitchBasic(std::string memberID);
 
-    // 13 save changes made, uses FileManager for #9-12 to make changes onto
-    //  the respective .txt files
+    //13 save changes made, uses FileManager for #9-12 to make changes onto
+    // the respective .txt files
     void updateInfo();
+    void getList();
 
 public:
     void readMember();
     void readPurchase();
 
 private:
-    // reads in member file first
+    //reads in member file first
     LinkedList<Member> memberList;
     LinkedList<Purchase> purchaseList;
-    // textfile manager for both purchases and members
+    //textfile manager for both purchases and members
 
-    // has linked list of purchase files (by day) and 1 member file
+    //has linked list of purchase files (by day) and 1 member file
     FileManager files;
 };
 
