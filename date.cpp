@@ -188,6 +188,9 @@ Date::Date(const string &mn, unsigned d, unsigned y)
         cout << "Invalid date values: Date corrected to " << month << "/"
          << day << "/" << year << ".\n";
 }
+
+Date* Date::INFINITY = new Date(1, 1, 9999);
+
 /**********************************************************
 *
 * Method printAlpha: Class Date
@@ -421,9 +424,9 @@ string& operator>> (string& input,
 //  string date = "";
 //  isDate >> date;
 
-  int dayTemp;                           // Day
-  int monthTemp;                         // Month
-  int yearTemp;                          // Year
+  int dayTemp = 0;                           // Day
+  int monthTemp = 0;                         // Month
+  int yearTemp = 0;                          // Year
   string monthNameTemp;                           // Month name
   bool slashFound = false;
   bool spaceFound = false;

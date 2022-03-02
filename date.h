@@ -108,6 +108,8 @@ class Date
         ***************************************************************/
         Date(unsigned m, unsigned d, unsigned y);
 
+        static Date* INFINITY;
+
         /****************************************************************
         * Date (const string &mn, unsigned d, unsigned y);
         * Constructor; Initialize Date attributes for object

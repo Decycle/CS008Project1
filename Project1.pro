@@ -11,18 +11,26 @@ CONFIG += c++11
 SOURCES += \
     adminmenu.cpp \
     date.cpp \
+    filemanager.cpp \
+    infointerface.cpp \
     linkedlist.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    member.cpp \
+    purchase.cpp
 
 HEADERS += \
     adminmenu.h \
     date.h \
+    filemanager.h \
+    infointerface.h \
     linkedlist.h \
     listempty.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    member.h \
+    purchase.h
 
 FORMS += \
     adminmenu.ui \
