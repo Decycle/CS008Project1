@@ -4,11 +4,11 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include "linkedlist.h"
 #include "date.h"
 #include "purchase.h"
 #include "member.h"
-#include <sstream>
 /****************************************************************
 * FileManager Class
 *   This class will help keep track of the text files for the purpose of read
@@ -20,8 +20,8 @@ private:
 
 public:
   static LinkedList<Purchase> readDayfile(string fileName);
-  static LinkedList<Member> readMemberFile(string fileName);
-  static void saveFiles();
+//   static LinkedList<Member> readMemberFile(string fileName);
+//   static void saveFiles();
 };
 
 #endif // FILEMANAGER_H

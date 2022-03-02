@@ -38,7 +38,7 @@ void Purchase::setPurchaseDate(Date date)
     _purchaseDate = date;
 }
 
-Date Purchase::getPurchaseDate()
+Date Purchase::getPurchaseDate() const
 {
     return _purchaseDate;
 }
@@ -48,7 +48,7 @@ void Purchase::setMemberID(string id)
     _memberID = id;
 }
 
-string Purchase::getMemberID()
+string Purchase::getMemberID() const
 {
     return _memberID;
 }
@@ -58,7 +58,7 @@ void Purchase::setProductName(string name)
     _productName = name;
 }
 
-string Purchase::getProductName()
+string Purchase::getProductName() const
 {
     return _productName;
 }
@@ -68,7 +68,7 @@ void Purchase::setProductPrice(double price)
     _price = price;
 }
 
-double Purchase::getProductPrice()
+double Purchase::getProductPrice() const
 {
     return _price;
 }
@@ -78,7 +78,18 @@ void Purchase::setProductQuantity(unsigned amount)
     _quantity = amount;
 }
 
-unsigned Purchase::getProductQuantity()
+unsigned Purchase::getProductQuantity() const
 {
     return _quantity;
+}
+
+void Purchase::print() const
+{
+    cout << "Purchase Date: ";
+    _purchaseDate.printNumeric();
+    cout << endl;
+    cout << "Member ID: " << _memberID << endl;
+    cout << "Product Name: " << _productName << endl;
+    cout << "Product Price: " << _price << endl;
+    cout << "Product Quantity: " << _quantity << endl;
 }

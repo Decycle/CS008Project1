@@ -20,6 +20,8 @@ private slots:
     void on_adminLoginButton_clicked();
     void show_main_window();
 
+    void on_dailySalesReportButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Login *login;

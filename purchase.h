@@ -1,7 +1,10 @@
 #ifndef PURCHASE_H
 #define PURCHASE_H
 #include "date.h"
+#include <iostream>
 #include <string>
+
+using namespace std;
 class Purchase
 {
 public:
@@ -20,19 +23,21 @@ public:
              unsigned quantity);
 
     void setPurchaseDate(Date date);
-    Date getPurchaseDate();
+    Date getPurchaseDate() const;
 
     void setMemberID(string id);
-    string getMemberID();
+    string getMemberID() const;
 
     void setProductName(string name);
-    string getProductName();
+    string getProductName() const;
 
     void setProductPrice(double price);
-    double getProductPrice();
+    double getProductPrice() const;
 
     void setProductQuantity(unsigned amount);
-    unsigned getProductQuantity();
+    unsigned getProductQuantity() const;
+
+    void print() const;
 
 private:
     Date _purchaseDate;

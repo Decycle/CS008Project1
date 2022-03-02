@@ -1,5 +1,49 @@
 #include "filemanager.h"
 
+
+LinkedList<Purchase> FileManager::readDayfile(string fileName)
+{
+    LinkedList<Purchase> purchases;
+    ifstream infile;
+    infile.open(fileName);
+    string line;
+    stringstream ss;
+
+    while(true)
+    {
+
+        if(!getline(infile, line)) break;
+        //Date
+        ss.str(line);
+        Date d;
+        line >> d;
+
+        if(!getline(infile, line)) break;
+        //ID
+        ss.str(line);
+        string id;
+        ss >> id;
+
+        if(!getline(infile, line)) break;
+        //Name
+        string name;
+        name = line;
+
+        if(!getline(infile, line)) break;
+        //Price and Quantity
+        ss.str(line);
+        double price;
+        int quantity;
+
+        ss >> price >> quantity;
+
+        Purchase p(d, id, name, price, quantity);
+        purchases.push_back(p);
+    }
+    infile.close();
+    return purchases;
+}
+
 //FileManager::FileManager()
 //{
 //    memberfile = "warehouse shopppers";
