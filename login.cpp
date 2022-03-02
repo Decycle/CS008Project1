@@ -7,6 +7,10 @@ Login::Login(QWidget *parent) :
 {
     ui->setupUi(this);
     this->ui->wrong_password->hide();
+
+    adminMenu = new AdminMenu();
+
+    connect(adminMenu, SIGNAL(return_login_window()), this, SLOT(show_login_window()));
 }
 
 Login::~Login()
@@ -22,12 +26,19 @@ void Login::on_login_button_clicked()
 
     if(username == "admin" && password == "admin")
     {
-
+        adminMenu->show();
+        this->hide();
     }
     else
     {
         this->ui->wrong_password->show();
     }
+}
+
+void Login::show_login_window()
+{
+    adminMenu->hide();
+    this->show();
 }
 
 

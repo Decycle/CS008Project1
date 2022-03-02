@@ -1,6 +1,7 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
+#include "adminmenu.h"
 #include <QWidget>
 
 namespace Ui {
@@ -16,15 +17,15 @@ public:
     ~Login();
 
 private slots:
-
     void on_login_button_clicked();
-
     void on_exit_button_clicked();
+    void show_login_window();
 
 signals:
     void returnMainWindow();
 private:
     Ui::Login *ui;
+    AdminMenu *adminMenu;
 };
 
 #endif // LOGIN_H
