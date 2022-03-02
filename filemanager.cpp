@@ -1,7 +1,7 @@
 #include "filemanager.h"
 
 
-LinkedList<Purchase> FileManager::readDayfile(string fileName)
+LinkedList<Purchase> FileManager::readDayFile(string fileName)
 {
     LinkedList<Purchase> purchases;
     ifstream infile;

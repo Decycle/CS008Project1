@@ -19,8 +19,8 @@ class FileManager
 private:
 
 public:
-  static LinkedList<Purchase> readDayfile(string fileName);
-//   static LinkedList<Member> readMemberFile(string fileName);
+  static LinkedList<Purchase> readDayFile(string fileName);
+  static LinkedList<Member> readMemberFile(string fileName);
 //   static void saveFiles();
 };
 

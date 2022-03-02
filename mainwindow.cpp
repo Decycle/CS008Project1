@@ -1,9 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "filemanager.h"
+#include "infointerface.h"
 
 #include <QDebug>
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,6 +23,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+InfoInterface MainWindow::ii;
 
 void MainWindow::on_adminLoginButton_clicked()
 {
@@ -37,8 +39,7 @@ void MainWindow::show_main_window()
 
 void MainWindow::on_dailySalesReportButton_clicked()
 {
-    LinkedList<Purchase> purchases= FileManager::readDayfile("/Users/ziminyang/Documents/c++/class3/Project1/day1.txt");
 
-    this->ui->outputConsole->setText(QString::fromStdString(purchases.front().getProductName()));
+    this->ui->outputConsole->setText(QString::fromStdString(ii.getFullReport()));
 }
 

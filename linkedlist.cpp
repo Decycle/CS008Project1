@@ -277,7 +277,7 @@ LinkedList<E>::~LinkedList()
 template<class E>
 E& LinkedList<E>::operator[](const unsigned i){
     Node<E> *walker = head;
-    for(int j = 0; j < i; j++){
+    for(unsigned j = 0; j < i; j++){
         walker=walker->next;
     }
     return walker->data;

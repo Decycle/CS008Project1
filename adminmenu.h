@@ -18,6 +18,8 @@ public:
 private slots:
     void on_exit_button_clicked();
 
+    void on_load_purchase_file_button_clicked();
+
 signals:
     void return_login_window();
 

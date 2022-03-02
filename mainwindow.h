@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "login.h"
+#include "infointerface.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,11 +16,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    static InfoInterface ii;
 
 private slots:
-    void on_adminLoginButton_clicked();
     void show_main_window();
 
+    void on_adminLoginButton_clicked();
     void on_dailySalesReportButton_clicked();
 
 private:
