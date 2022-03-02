@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
     QFile stylesheet(":/ui/global.qss");
     stylesheet.open(QIODevice::ReadOnly);
     QString stylesheetString = QLatin1String(stylesheet.readAll());
-
     a.setStyleSheet(stylesheetString);
 
     MainWindow w;

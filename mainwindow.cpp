@@ -1,21 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //add code for use below
-    //index 1
-    ui->stackedWidget->insertWidget(1,&LogInvalid);
-    //index 2
-    ui->stackedWidget->insertWidget(2,&AdmMenu);
-    //index 3
-    ui->stackedWidget->insertWidget(3,&EmpMenu);
+    this->setWindowTitle("Superware House");
+    login = new Login();
+    login->setWindowTitle("Login");
 
-    connect(&LogInvalid,SIGNAL(okClicked()), this, SLOT(moveLogin()));
+    connect(login, SIGNAL(returnMainWindow()), this, SLOT(show_main_window()));
 }
 
 MainWindow::~MainWindow()
@@ -23,36 +18,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_CloseButton_clicked()
+
+void MainWindow::on_adminLoginButton_clicked()
 {
-    this->close();
+   login->show();
+   this->hide();
 }
 
-void MainWindow::moveLogin()
+void MainWindow::show_main_window()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    this->show();
+    login->hide();
 }
-
-
-
-void MainWindow::on_TestEmployeeButton_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(3);
-}
-
-
-void MainWindow::on_LoginButton_clicked()
-{
-    QString username = ui->UsernameInput->toPlainText();
-    QString password = ui->UsernameInput->toPlainText();
-
-    if(username == "admin" && password == "admin")
-    {
-        ui->stackedWidget->setCurrentIndex(2);
-    }
-    else
-    {
-        ui->stackedWidget->setCurrentIndex(1);
-    }
-}
-

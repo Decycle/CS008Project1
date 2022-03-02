@@ -2,17 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "logininvalid.h"
-#include "employeemenu.h"
-#include "adminmenu.h"
+#include "login.h"
 
-/*
- * For Reference the mainwindow is the login page
- *
- *
- *
- *
- */
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -26,20 +17,11 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_CloseButton_clicked();
-
-    void moveLogin();
-
-    void on_TestEmployeeButton_clicked();
-
-    void on_LoginButton_clicked();
+    void on_adminLoginButton_clicked();
+    void show_main_window();
 
 private:
     Ui::MainWindow *ui;
-    LoginInvalid LogInvalid;
-    AdminMenu AdmMenu;
-    EmployeeMenu EmpMenu;
-
-
+    Login *login;
 };
 #endif // MAINWINDOW_H
