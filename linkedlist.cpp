@@ -282,6 +282,17 @@ E& LinkedList<E>::operator[](const unsigned i){
     }
     return walker->data;
 }
+
+template<class E>
+void LinkedList<E>::operator+=(const LinkedList<E> &other)
+{
+    Node<E> *current = other.head;
+    while(current != nullptr){
+        push_back(current->data);
+        current = current->next;
+    }
+}
+
 /**************************************************************************
  *
  * Method LinkedList<E>: Class LinkedList<E>

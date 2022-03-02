@@ -161,6 +161,8 @@ class LinkedList: public Iterator<E>
 
         E& operator[](const unsigned i);
 
+        void operator+=(const LinkedList<E> &other);
+
 };
 /******************
  **  CONSTRUCTORS  **

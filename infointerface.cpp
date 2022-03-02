@@ -13,6 +13,7 @@ void InfoInterface::readDayFile(string filename)
     }
     else
     {
+        purchaseList += FileManager::readDayFile(FILEDIR + filename + FILETYPE);
     }
 }
 

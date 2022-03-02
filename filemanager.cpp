@@ -1,5 +1,7 @@
 #include "filemanager.h"
 
+#include <QDebug>
+
 
 LinkedList<Purchase> FileManager::readDayFile(string fileName)
 {
@@ -18,16 +20,22 @@ LinkedList<Purchase> FileManager::readDayFile(string fileName)
         Date d;
         line >> d;
 
+qDebug() << QString().fromStdString(line) << '\n';
+
         if(!getline(infile, line)) break;
         //ID
         ss.str(line);
         string id;
         ss >> id;
 
+qDebug() << QString().fromStdString(line) << '\n';
+
         if(!getline(infile, line)) break;
         //Name
         string name;
         name = line;
+
+        qDebug() << QString().fromStdString(line) << '\n';
 
         if(!getline(infile, line)) break;
         //Price and Quantity
@@ -36,6 +44,8 @@ LinkedList<Purchase> FileManager::readDayFile(string fileName)
         int quantity;
 
         ss >> price >> quantity;
+
+qDebug() << QString().fromStdString(line) << '\n';
 
         Purchase p(d, id, name, price, quantity);
         purchases.push_back(p);
