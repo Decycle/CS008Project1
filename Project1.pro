@@ -10,12 +10,17 @@ CONFIG += c++11
 
 SOURCES += \
     adminmenu.cpp \
+    date.cpp \
+    linkedlist.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     adminmenu.h \
+    date.h \
+    linkedlist.h \
+    listempty.h \
     login.h \
     mainwindow.h
 
