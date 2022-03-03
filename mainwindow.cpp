@@ -39,7 +39,11 @@ void MainWindow::show_main_window()
 
 void MainWindow::on_dailySalesReportButton_clicked()
 {
+    string DateString = this->ui->dateInput->text().toStdString();
+    Date d;
+    DateString >> d;
 
-    this->ui->outputConsole->setText(QString::fromStdString(ii.getFullReport()));
+    string report = ii.getDayReport(d);
+    this->ui->outputConsole->setText(QString().fromStdString(report));
 }
 

@@ -27,7 +27,6 @@ void Login::on_login_button_clicked()
     if(username == "admin" && password == "admin")
     {
         adminMenu->show();
-        this->hide();
     }
     else
     {
@@ -38,7 +37,6 @@ void Login::on_login_button_clicked()
 void Login::show_login_window()
 {
     adminMenu->hide();
-    this->show();
 }
 
 

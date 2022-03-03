@@ -18,9 +18,6 @@ class Date
 
         unsigned month;     //IN/OUT - the month of the date object
 
-        string monthName;   //IN/OUT - the month name of the date name
-                            //object
-
         unsigned year;      //IN/OUT - the year of the date object
 
         /******************************
@@ -29,7 +26,7 @@ class Date
         /******************************************************************
         * bool isLeap(unsigned) const;
         *
-        * Mutator; This method will return a boolean response based on
+        * Accessor; This method will return a boolean response based on
         * if the year(parameter) is a leap year or not.
         *------------------------------------------------------------------
         * Parameter: year (unsigned) // IN/OUT – the year to check if it is
@@ -92,8 +89,28 @@ class Date
         ***************************************************************/
         Date();
 
+        /******************************
+        ** OVERLOAD CONSTRUCTOR  **
+        ******************************/
+        /****************************************************************
+        * Date (const Date &source);
+        * Constructor; Initialize Date attributes  with source object
+        * Parameters: Date &source
+        * Return: none
+        ***************************************************************/
         Date(const Date &source);
 
+        /******************************************************************
+          * Date& operator=(const Date &source);
+          *      Constructor; Called when using the assignment operator to
+          *      set one
+          *      Date equal to another.
+          *----------------------------------------------------------------
+          *      Parameters:
+         *              source          // Date
+          *----------------------------------------------------------------
+          *      Return: none
+          ****************************************************************/
         Date& operator=(const Date &source);
 
         /****************************************************************
@@ -107,8 +124,6 @@ class Date
         * Return: none
         ***************************************************************/
         Date(unsigned m, unsigned d, unsigned y);
-
-        static Date* INFINITY;
 
         /****************************************************************
         * Date (const string &mn, unsigned d, unsigned y);
@@ -134,9 +149,62 @@ class Date
         * --------------------------------------------------------------
         * Return: none
         ***************************************************************/
-
         void printNumeric() const;
 
+        /***************
+        ** MUTATOR **
+        ***************/
+        /****************************************************************
+        * string getNumeric();
+        * MUTATOR; This method Rreturn the date in string
+        * --------------------------------------------------------------
+        * Parameters: none
+        * --------------------------------------------------------------
+        * Return: string
+        ***************************************************************/
+        std::string getNumeric();
+
+        /****************************************************************
+        * string getNumeric();
+        * MUTATOR; This method Rreturn the date in string
+        * --------------------------------------------------------------
+        * Parameters: none
+        * --------------------------------------------------------------
+        * Return: string
+        ***************************************************************/
+        unsigned getYear() const;
+
+        /****************************************************************
+        * getMonth() const;
+        * MUTATOR; This method Rreturn the month in string
+        * --------------------------------------------------------------
+        * Parameters: none
+        * --------------------------------------------------------------
+        * Return: string
+        ***************************************************************/
+        unsigned getMonth() const;
+
+        /****************************************************************
+        * string getDay() const;
+        * MUTATOR; This method Rreturn the day in string
+        * --------------------------------------------------------------
+        * Parameters: none
+        * --------------------------------------------------------------
+        * Return: string
+        ***************************************************************/
+        unsigned getDay() const;
+
+        /****************************************************************
+        * string getMonthName() const;
+        * MUTATOR; This method Rreturn the month in string
+        * --------------------------------------------------------------
+        * Parameters: none
+        * --------------------------------------------------------------
+        * Return: string
+        ***************************************************************/
+        std::string getMonthName() const;
+
+
         /****************************************************************
         * void printAlpha() const;
         *
@@ -146,106 +214,108 @@ class Date
         * --------------------------------------------------------------
         * Return: none
         ***************************************************************/
-
         void printAlpha() const;
+
         /****************************************************************
-        * void printAlpha() const;
-        *
-        * Accessor; This method print the date object alphanumerically
+        * operator>> (string& string, Date& cDate);
+        * Accessor; This method will read the date in string and
+        *  convert to Date type
         * --------------------------------------------------------------
-        * Parameters: none
+        * Parameters: string
         * --------------------------------------------------------------
-        * Return: none
+        * Return: Date
         ***************************************************************/
         friend string& operator>> (string& string, Date& cDate);
+
         /****************************************************************
-        * void printAlpha() const;
-        *
-        * Accessor; This method print the date object alphanumerically
+        * ostream& operator<< (ostream& osDate,const Date& cDate);
+        * Accessor; This method print the date object
         * --------------------------------------------------------------
-        * Parameters: none
+        * Parameters: Date
         * --------------------------------------------------------------
         * Return: none
         ***************************************************************/
         friend ostream& operator<< (ostream& osDate,
                                     const Date& cDate);
+
         /****************************************************************
-        * void printAlpha() const;
-        *
-        * Accessor; This method print the date object alphanumerically
+        * bool operator<(const Date&) const;
+        * Accessor; This method compares two date object, return true
+        *  if input Date < this object
         * --------------------------------------------------------------
-        * Parameters: none
+        * Parameters: Date
         * --------------------------------------------------------------
-        * Return: none
+        * Return: true / false
         ***************************************************************/
         bool operator<(const Date&) const;
+
         /****************************************************************
-        * void printAlpha() const;
-        *
-        * Accessor; This method print the date object alphanumerically
+        * bool operator>(const Date&) const;
+        * Accessor; This method compares two date object, return true
+        *  if input Date > this object
         * --------------------------------------------------------------
-        * Parameters: none
+        * Parameters: Date
         * --------------------------------------------------------------
-        * Return: none
+        * Return: true / false
         ***************************************************************/
         bool operator>(const Date&) const;
+
         /****************************************************************
-        * void printAlpha() const;
-        *
-        * Accessor; This method print the date object alphanumerically
+        * bool operator==(const Date&) const;
+        * Accessor; This method compares two date object, return true
+        *  if input Date == this object
         * --------------------------------------------------------------
-        * Parameters: none
+        * Parameters: Date
         * --------------------------------------------------------------
-        * Return: none
+        * Return: true / false
         ***************************************************************/
         bool operator==(const Date&) const;
 
-        /*
-        else if (ui->Date_radioButton_4->isChecked())
-            {
-                string date = input.toStdString();
-                int dayTemp;                           // Day
-                int monthTemp;                         // Month
-                int yearTemp;                          // Year
-                string monthNameTemp;                           // Month name
-                bool slashFound = false;
-                bool spaceFound = false;
+        /****************************************************************
+        * bool operator!=(const Date&) const;
+        * Accessor; This method compares two date object, return true
+        *  if input Date != this object
+        * --------------------------------------------------------------
+        * Parameters: Date
+        * --------------------------------------------------------------
+        * Return: true / false
+        ***************************************************************/
+        bool operator!=(const Date&) const;
 
-                for (unsigned long i = 0; i < date.size(); i++)
-                {
-                    if (date.at(i) == '/')
-                    {
-                        slashFound = true;
-                    }
-                    else if (date.at(i) == ' ')
-                    {
-                        spaceFound = true;
-                    }
-                }
 
-                if (slashFound == true)
-                {
-                    monthTemp = stoi(date.substr(0, date.find("/")));
-                    dayTemp = stoi(date.substr(date.find("/") + 1, date.find_last_of('/')));
-                    yearTemp = stoi(date.substr(date.find_last_of("/") + 1, date.size()));
-                    Date tempDate (monthTemp, dayTemp, yearTemp);
-                    listDate.push_back(tempDate);
-                }
-                else if (spaceFound == true)
-                {
-                    monthTemp = stoi(date.substr(0, date.find(' ')));
-                    dayTemp = stoi(date.substr(date.find(' ') + 1, date.find_last_of(' ')));
-                    yearTemp = stoi(date.substr(date.find_last_of(' ') + 1, date.size()));
-                    Date tempDate (monthNameTemp, dayTemp, yearTemp);
-                    listDate.push_back(tempDate);
-                }
-                else
-                {
-                    Date tempDate;
-                    listDate.push_back(tempDate);
-                }
-                display(1,1);
-        */
+        /***************
+        ** ACCESSORS **
+        ***************/
+        /****************************************************************
+        * void setDay(unsigned d);
+        * Accessor; This method set the day with input unsigned day
+        * --------------------------------------------------------------
+        * Parameters: unsigned day
+        * --------------------------------------------------------------
+        * Return: none
+        ***************************************************************/
+        void setDay(unsigned d);
+
+        /****************************************************************
+        * void setMonth(unsigned m);
+        * Accessor; This method set the month with input unsigned day
+        * --------------------------------------------------------------
+        * Parameters: unsigned day
+        * --------------------------------------------------------------
+        * Return: none
+        ***************************************************************/
+        void setMonth(unsigned m);
+
+        /****************************************************************
+        * void setYear(unsigned y);
+        * Accessor; This method set the year with input unsigned day
+        * --------------------------------------------------------------
+        * Parameters: unsigned year
+        * --------------------------------------------------------------
+        * Return: none
+        ***************************************************************/
+        void setYear(unsigned y);
+
 
 
 };

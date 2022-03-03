@@ -16,11 +16,8 @@ LinkedList<Purchase> FileManager::readDayFile(string fileName)
 
         if(!getline(infile, line)) break;
         //Date
-        ss.str(line);
         Date d;
         line >> d;
-
-qDebug() << QString().fromStdString(line) << '\n';
 
         if(!getline(infile, line)) break;
         //ID
@@ -28,14 +25,10 @@ qDebug() << QString().fromStdString(line) << '\n';
         string id;
         ss >> id;
 
-qDebug() << QString().fromStdString(line) << '\n';
-
         if(!getline(infile, line)) break;
         //Name
         string name;
         name = line;
-
-        qDebug() << QString().fromStdString(line) << '\n';
 
         if(!getline(infile, line)) break;
         //Price and Quantity
@@ -45,83 +38,47 @@ qDebug() << QString().fromStdString(line) << '\n';
 
         ss >> price >> quantity;
 
-qDebug() << QString().fromStdString(line) << '\n';
-
         Purchase p(d, id, name, price, quantity);
         purchases.push_back(p);
     }
     infile.close();
     return purchases;
 }
+LinkedList<Member> FileManager::readMemberFile(string fileName)
+{
+    LinkedList<Member> members;
+    ifstream infile;
+    infile.open(fileName);
+    string line;
+    stringstream ss;
 
-//FileManager::FileManager()
-//{
-//    memberfile = "warehouse shopppers";
-//    std::string FILETYPE = ".txt";                  //CONSTANT-file type
-//    std::string FILEDIR = "..\\WarehouseReport\\";    //CONSTANT-auto directory path
-//    //find each day file
-//    fstream infile;
-//    std::string line;
+    while(true)
+    {
+        if(!getline(infile, line)) break;
+        //Name
+        string name;
+        name = line;
 
-//    std::string fullFile;
+        if(!getline(infile, line)) break;
+        //ID
+        ss.str(line);
+        string id;
+        ss >> id;
 
-//    stringstream ss;
-//    int count = 1;
-//    ss << count;
-//    std::string stringCount = ss.str();
+        if(!getline(infile, line)) break;
+        //Type
+        ss.str(line);
+        string type;
+        ss >> type;
 
-//    fullFile = FILEDIR + "day" + stringCount + FILETYPE;
-//    infile.open(fullFile,ios::in);
+        if(!getline(infile, line)) break;
+        //Date
+        Date d;
+        line >> d;
 
-//    //tests if first open works
-//    if(infile.is_open()){
-//    //while loop until not good
-
-//        while(infile.is_open()){
-//            //line is the whole string
-//            getline(infile,line);
-//            //should reset each loop
-//            Dayfile a = Dayfile();
-//            //should reset each loop
-//            Date day = Date();
-//            //feeds line into day
-//            line >> day;
-//            //sets the date in dayfile
-//            a.setDate(day);
-//            //sets the full file
-//            a.setfile(fullFile);
-//            purchaseDayFiles.push_back(a);
-
-//            infile.close();
-//            count++;
-//            ss.str("");
-//            ss.clear();
-//            ss << count;
-//            std::string stringCount = ss.str();
-//            fullFile = FILEDIR + "day" + stringCount + FILETYPE;
-//            infile.open(fullFile,ios::in);
-//        }
-//    }
-//}
-
-
-////for finding specific days
-//string FileManager::getdayfile(Date day)
-//{
-//    for(int i = 0; i < purchaseDayFiles.length(); i++)
-//    {
-//        //if the date matches
-//        if(day == purchaseDayFiles[i].getDate())
-//            return purchaseDayFiles[i].getFile();
-//    }
-//}
-
-//std::string FileManager::getMemberFile()
-//{
-//    return memberfile;
-//}
-
-//int FileManager::numberDayFiles()
-//{
-//    return purchaseDayFiles.length();
-//}
+        Member m(id, d, name, type);
+        members.push_back(m);
+    }
+    infile.close();
+    return members;
+}

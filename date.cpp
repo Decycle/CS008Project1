@@ -22,7 +22,6 @@ using namespace std;
 * POST-CONDITIONS
 * The function creates an object. No return value.
 ***********************************************************/
-
 Date::Date()
 {
     //PROC - initialize private variables, no parameter object
@@ -30,28 +29,43 @@ Date::Date()
     day = 1;
     year = 2000;
 
-    monthName = name(month);
 }
 
+/******************************
+** OVERLOAD CONSTRUCTOR  **
+******************************/
+/****************************************************************
+* Date (const Date &source);
+* Constructor; Initialize Date attributes  with source object
+* Parameters: Date &source
+* Return: none
+***************************************************************/
 Date::Date(const Date &source)
 {
     month = source.month;
     day = source.day;
     year = source.year;
-
-    monthName = source.monthName;
-
-
 }
 
+/******************************************************************
+* Date& operator=(const Date &source);
+*      Constructor; Called when using the assignment operator to
+*      set one
+*      Date equal to another.
+*----------------------------------------------------------------
+*      Parameters:
+*              source          // Date
+*----------------------------------------------------------------
+*      Return: none
+****************************************************************/
 Date& Date::operator=(const Date &source)
 {
     this->day = source.day;
     this->month = source.month;
     this->year = source.year;
-    this->monthName = source.monthName;
     return *this;
 }
+
 /**********************************************************
 *
 * Method Date: Class Date
@@ -69,7 +83,6 @@ Date& Date::operator=(const Date &source)
 * POST-CONDITIONS
 * The function creates an object. No return value.
 ***********************************************************/
-
 Date::Date(unsigned m, unsigned d, unsigned y)
 {
     int invalid;    //PROC - invalid status for invalid output
@@ -93,8 +106,6 @@ Date::Date(unsigned m, unsigned d, unsigned y)
         invalid = 1;
     }
 
-    //PROC - name of month
-    monthName = name(month);
 
     //PROC - if day greater than max day of month, leap year respective
     if (day > daysPerMonth(month,year))
@@ -137,21 +148,19 @@ Date::Date(unsigned m, unsigned d, unsigned y)
 Date::Date(const string &mn, unsigned d, unsigned y)
 {
     int invalid;    //PROC - invalid status for invalid output
-    monthName = mn; //IN/OUT - string month name for date output
     day = d;        //IN/OUT - day for date output
     year = y;       //IN/OUT - year for date output
 
     //PROC - initialize to valid
     invalid = 0;
     //PROC - returns month number, 0 if string couldn't be read
-    month = number(monthName);
+    month = number(mn);
     //PROC - if month string could not be read
     if (month == 0) //month check
     {
         month = 1;
         day = 1;
         year = 2000;
-        monthName = name(month);
         invalid = 2;
     }
     //PROC - if number of months is more than existing 12
@@ -188,9 +197,6 @@ Date::Date(const string &mn, unsigned d, unsigned y)
         cout << "Invalid date values: Date corrected to " << month << "/"
          << day << "/" << year << ".\n";
 }
-
-Date* Date::INFINITY = new Date(1, 1, 9999);
-
 /**********************************************************
 *
 * Method printAlpha: Class Date
@@ -204,11 +210,10 @@ Date* Date::INFINITY = new Date(1, 1, 9999);
 * The function couts/prints out the date in alphanumeric
 * form. No return value.
 ***********************************************************/
-
 void Date::printAlpha() const
 {
     //PROC - print alphabetical form
-    cout << monthName << " " << day << ", " << year;
+    cout << name(month) << " " << day << ", " << year;
 }
 
 /**********************************************************
@@ -228,6 +233,77 @@ void Date::printNumeric() const
 {
     //PROC - print numeric form
     cout << month << "/" << day << "/" << year;
+}
+
+/****************************************************************
+* string getNumeric();
+* MUTATOR; This method Rreturn the date in string
+* --------------------------------------------------------------
+* Parameters: none
+* --------------------------------------------------------------
+* Return: string
+***************************************************************/
+string Date::getNumeric()
+{
+    std::string out;
+    out += month;
+    out += "/";
+    out += day;
+    out += "/";
+    out += year;
+    return out;
+}
+
+/****************************************************************
+* string getNumeric();
+* MUTATOR; This method Rreturn the date in string
+* --------------------------------------------------------------
+* Parameters: none
+* --------------------------------------------------------------
+* Return: string
+***************************************************************/
+unsigned Date::getYear() const
+{
+    return year;
+}
+
+/****************************************************************
+* getMonth() const;
+* MUTATOR; This method Rreturn the month in string
+* --------------------------------------------------------------
+* Parameters: none
+* --------------------------------------------------------------
+* Return: string
+***************************************************************/
+unsigned Date::getMonth() const
+{
+    return month;
+}
+
+/****************************************************************
+* string getDay() const;
+* MUTATOR; This method Rreturn the day in string
+* --------------------------------------------------------------
+* Parameters: none
+* --------------------------------------------------------------
+* Return: string
+***************************************************************/
+unsigned Date::getDay() const
+{
+    return day;
+}
+
+/****************************************************************
+* string getMonthName() const;
+* MUTATOR; This method Rreturn the month in string
+* --------------------------------------------------------------
+* Parameters: none
+* --------------------------------------------------------------
+* Return: string
+***************************************************************/
+string Date::getMonthName() const
+{
+    return name(month);
 }
 
 /**********************************************************
@@ -323,6 +399,7 @@ unsigned Date::daysPerMonth(unsigned m, unsigned y) const
     //PROC - error
     return 0;
 }
+
 /**********************************************************
 *
 * Method name: Class Date
@@ -339,7 +416,6 @@ unsigned Date::daysPerMonth(unsigned m, unsigned y) const
 * Returns "error" when the string is invalid(month number is
 * invalid). Returns string.
 ***********************************************************/
-
 string Date::name (unsigned m) const
 {
     //PROC - return month string based on number
@@ -370,6 +446,7 @@ string Date::name (unsigned m) const
     //PROC - invalid month number
     return "error";
 }
+
 /**********************************************************
 *
 * Method number: Class Date
@@ -417,6 +494,15 @@ unsigned Date::number (const string &mn) const
     return 0;
 }
 
+/****************************************************************
+* operator>> (string& string, Date& cDate);
+* Accessor; This method will read the date in string and
+*  convert to Date type
+* --------------------------------------------------------------
+* Parameters: string
+* --------------------------------------------------------------
+* Return: Date
+***************************************************************/
 string& operator>> (string& input,
                             Date& cDate)
 {
@@ -424,9 +510,9 @@ string& operator>> (string& input,
 //  string date = "";
 //  isDate >> date;
 
-  int dayTemp = 0;                           // Day
-  int monthTemp = 0;                         // Month
-  int yearTemp = 0;                          // Year
+  int dayTemp;                           // Day
+  int monthTemp;                         // Month
+  int yearTemp;                          // Year
   string monthNameTemp;                           // Month name
   bool slashFound = false;
   bool spaceFound = false;
@@ -465,11 +551,19 @@ string& operator>> (string& input,
   cDate.month = monthTemp;
   cDate.day = dayTemp;
   cDate.year = yearTemp;
-  cDate.monthName=cDate.name(cDate.month);
 
   return input;
 
 }
+
+/****************************************************************
+* ostream& operator<< (ostream& osDate,const Date& cDate);
+* Accessor; This method print the date object
+* --------------------------------------------------------------
+* Parameters: Date
+* --------------------------------------------------------------
+* Return: none
+***************************************************************/
 ostream& operator<< (ostream& osDate,
                             const Date& cDate)
 {
@@ -480,6 +574,16 @@ ostream& operator<< (ostream& osDate,
     osDate << cDate.year;
     return osDate;
 }
+
+/****************************************************************
+* bool operator<(const Date&) const;
+* Accessor; This method compares two date object, return true
+*  if input Date < this object
+* --------------------------------------------------------------
+* Parameters: Date
+* --------------------------------------------------------------
+* Return: true / false
+***************************************************************/
 bool Date::operator<(const Date& rhs) const
 {
 
@@ -508,6 +612,16 @@ bool Date::operator<(const Date& rhs) const
     }
     return false;
 }
+
+/****************************************************************
+* bool operator>(const Date&) const;
+* Accessor; This method compares two date object, return true
+*  if input Date > this object
+* --------------------------------------------------------------
+* Parameters: Date
+* --------------------------------------------------------------
+* Return: true / false
+***************************************************************/
 bool Date::operator>(const Date& rhs) const
 {
 
@@ -536,10 +650,75 @@ bool Date::operator>(const Date& rhs) const
     }
     return false;
 }
+
+/****************************************************************
+* bool operator==(const Date&) const;
+* Accessor; This method compares two date object, return true
+*  if input Date == this object
+* --------------------------------------------------------------
+* Parameters: Date
+* --------------------------------------------------------------
+* Return: true / false
+***************************************************************/
 bool Date::operator==(const Date& rhs) const
 {
-    if (year == rhs.year && month == rhs.month && day == rhs.day)
+    if ((year == rhs.year) && (month == rhs.month) && (day == rhs.day))
         return true;
     return false;
+}
+
+/****************************************************************
+* bool operator!=(const Date&) const;
+* Accessor; This method compares two date object, return true
+*  if input Date != this object
+* --------------------------------------------------------------
+* Parameters: Date
+* --------------------------------------------------------------
+* Return: true / false
+***************************************************************/
+bool Date::operator!=(const Date& rhs) const
+{
+    if ((year != rhs.year) || (month != rhs.month) || (day != rhs.day))
+        return true;
+    return false;
+}
+
+/****************************************************************
+* void setDay(unsigned d);
+* Accessor; This method set the day with input unsigned day
+* --------------------------------------------------------------
+* Parameters: unsigned day
+* --------------------------------------------------------------
+* Return: none
+***************************************************************/
+void Date::setDay(unsigned d)
+{
+    day = d;
+}
+
+/****************************************************************
+* void setMonth(unsigned m);
+* Accessor; This method set the month with input unsigned day
+* --------------------------------------------------------------
+* Parameters: unsigned day
+* --------------------------------------------------------------
+* Return: none
+***************************************************************/
+void Date::setMonth(unsigned m)
+{
+    month = m;
+}
+
+/****************************************************************
+* void setYear(unsigned y);
+* Accessor; This method set the year with input unsigned day
+* --------------------------------------------------------------
+* Parameters: unsigned year
+* --------------------------------------------------------------
+* Return: none
+***************************************************************/
+void Date::setYear(unsigned y)
+{
+    year = y;
 }
 #endif // COMPLEX_CPP

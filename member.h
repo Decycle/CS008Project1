@@ -10,19 +10,21 @@
 class Member
 {
 public:
-    Member(string id, string name="",  string type="basic", Date* date= Date::INFINITY);
-    void set_info(string id, string name="",  string type="basic", Date* date= Date::INFINITY);
+    Member();
+    Member(string id, Date date, string name="",  string type="Basic");
+    void set_info(string id, Date date, string name="",  string type="Basic");
+    void setMemberType(string type);
     void print();
     string getMemberName();
     string getMemberId();
-    Date* getMemberExpiredDate();
+    Date getMemberExpiredDate();
     string getMemberType();
 
 private:
     string member_name;
     string member_id;
     string member_type;         //basic / preferred
-    Date* member_expired_date;
+    Date member_expired_date;
 };
 
 #endif // MEMBER_H

@@ -191,7 +191,7 @@ template<class E>
 LinkedList<E>::LinkedList(): head(nullptr)  //PROC- initialize blank head
                            , tail(nullptr)  //PROC- initialize blank tail
 {
-    std::cout << "using Sean L's Linked list\n";
+//    std::cout << "using Sean L's Linked list\n";
 }
 /**************************************************************************
  *
